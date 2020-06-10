@@ -1,0 +1,42 @@
+1. crop_images.py
+
+将原始图像切成小图，同时包含有两种根据场景划分数据集的方式：近岸远海，1m3m分辨率。
+
+参数中：
+
+rootdir 指向原始的SARShip数据集
+savedir 保存位置
+fileinfo 指向fileinfo.txt的路径
+
+最终生成的目录结构
+
+savedir
+    all
+        images
+        labels
+    inshore
+        images
+        labels
+    offshore
+        images
+        labels
+    r3m
+        images
+        labels
+    r1m
+        images
+        labels
+
+使用方法见crop_images.sh
+
+2. fileinfo.txt
+
+保存每张图像的性质，其中倒数第三个和第二个代表其近岸远海及分辨率属性
+
+3. split_dataset.py
+
+利用crop_images.py生成的images和labels划分训练集验证集
+
+修改crop_images.sh中路径位置进行切分
+
+4. split_scenes.py 在利用split_dataset划分好训练解和验证集后,将划分好的数据集切分成不同的场景,生成inshore,offshore,1,3
